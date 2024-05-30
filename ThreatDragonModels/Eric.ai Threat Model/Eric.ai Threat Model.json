@@ -2,12 +2,16 @@
   "version": "2.2.0",
   "summary": {
     "title": "Eric.ai Threat Model",
-    "owner": "",
-    "description": "",
+    "owner": "David Seward",
+    "description": "Eric.ai ",
     "id": 0
   },
   "detail": {
-    "contributors": [],
+    "contributors": [
+      {
+        "name": "Punit Jain"
+      }
+    ],
     "diagrams": [
       {
         "id": 0,

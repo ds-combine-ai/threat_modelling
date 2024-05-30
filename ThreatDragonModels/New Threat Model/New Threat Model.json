@@ -19,26 +19,6 @@
         "cells": [
           {
             "position": {
-              "x": 241.99999999999977,
-              "y": 658.000000000001
-            },
-            "size": {
-              "width": 670,
-              "height": 220
-            },
-            "shape": "trust-boundary-box",
-            "id": "f6670bdd-4712-422a-ac9e-45fbdcbd1bcd",
-            "zIndex": -1,
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "Trust Boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            }
-          },
-          {
-            "position": {
               "x": 330,
               "y": 50.0000000000001
             },
@@ -58,8 +38,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "4a4efaf4-121f-4bc7-a798-ea2a21998869",
             "zIndex": 1,
+            "id": "4a4efaf4-121f-4bc7-a798-ea2a21998869",
             "data": {
               "type": "tm.Actor",
               "name": "User",
@@ -85,8 +65,8 @@
                 "text": "Eric API"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -100,7 +80,7 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": true,
@@ -108,11 +88,11 @@
               "threats": [
                 {
                   "id": "e6db0225-7168-4ced-affa-8e7b5d93d5e8",
-                  "title": "Request from auth service is spoofed",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "title": "Request from Auth service to API is spoofed",
+                  "status": "Mitigated",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Attacker sends requests to api impersonating the auth service",
+                  "description": "Attacker sends requests to API impersonating the auth service",
                   "mitigation": "We use an application key of large length and random unguessable characters to make it hard to break",
                   "modelType": "Generic",
                   "new": false,
@@ -465,6 +445,39 @@
             ]
           },
           {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "692921c0-7a8f-4e93-9032-e41040632e55",
+            "source": {
+              "x": 690,
+              "y": 80
+            },
+            "target": {
+              "x": 740,
+              "y": 860
+            },
+            "vertices": [
+              {
+                "x": 590,
+                "y": 320
+              },
+              {
+                "x": 610,
+                "y": 610
+              }
+            ]
+          },
+          {
             "position": {
               "x": 740,
               "y": 760
@@ -488,8 +501,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "c0a16f67-69c2-42b4-8b1e-c7165d5a8ede",
             "zIndex": 11,
+            "id": "c0a16f67-69c2-42b4-8b1e-c7165d5a8ede",
             "data": {
               "type": "tm.Store",
               "name": "Azure Postgres DB",
@@ -502,7 +515,21 @@
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "64c7deae-550b-4dc4-b6ed-2b318fa94a41",
+                  "title": "Attacker compromises database",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Attacker attempts to gain direct access to database in Azure",
+                  "mitigation": "- Direct access to database is restricted to private network in Azure.  Only access is through paired networks which we control",
+                  "modelType": "Generic",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -526,8 +553,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "23017205-4ca4-4233-bfd0-a15b5829bc64",
             "zIndex": 12,
+            "id": "23017205-4ca4-4233-bfd0-a15b5829bc64",
             "data": {
               "type": "tm.Process",
               "name": "Auth",
@@ -539,7 +566,21 @@
               "handlesGoodsOrServices": false,
               "isWebApplication": true,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "8b58aaaa-4fc9-4f2c-a6bd-f6cc9164910f",
+                  "title": "Request from API to Auth Service is spoofed",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Attacker sends requests to Auth service impersonating the API service\n",
+                  "mitigation": "We use an application key of large length and random unguessable characters to make it hard to break",
+                  "modelType": "Generic",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -563,8 +604,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "9fb2342b-eb38-46f3-9201-1fad8914d117",
             "zIndex": 13,
+            "id": "9fb2342b-eb38-46f3-9201-1fad8914d117",
             "data": {
               "type": "tm.Actor",
               "name": "Microsoft",
@@ -597,8 +638,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "14773682-7e4a-40df-85e7-3c4e4e9f7214",
             "zIndex": 14,
+            "id": "14773682-7e4a-40df-85e7-3c4e4e9f7214",
             "data": {
               "type": "tm.Process",
               "name": "Eric UI",
@@ -613,12 +654,12 @@
               "threats": [
                 {
                   "id": "050c66bb-b562-486e-930f-46e8c587d279",
-                  "title": "Auth database of tokens modified",
+                  "title": "User generates or modifies tokens in browser local storage",
                   "status": "Mitigated",
                   "severity": "High",
                   "type": "Tampering",
-                  "description": "User gets access to the database and creates, modifies or steals another user's token in order to get access to their data",
-                  "mitigation": "Direct access to database is restricted to private network in Azure.  Only access is through paired networks which we control",
+                  "description": "User creates or modifies their access token in browser local storage in order to get access to the system to steal data",
+                  "mitigation": "- Tokens are short lived\n",
                   "modelType": "Generic",
                   "new": false,
                   "number": 1,
@@ -626,7 +667,7 @@
                 },
                 {
                   "id": "7d04af0c-f919-4d92-b2c6-72d059a9669b",
-                  "title": "DDOS",
+                  "title": "Attacker prevents access to the system using DDOS",
                   "status": "Open",
                   "severity": "High",
                   "type": "Denial of service",
@@ -639,6 +680,54 @@
                 }
               ]
             }
+          },
+          {
+            "position": {
+              "x": 510,
+              "y": 80
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Outside cluster"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "59851c5a-b09e-4f84-bb38-3cac7781477c",
+            "zIndex": 15,
+            "data": {
+              "type": "tm.Text",
+              "name": "Outside cluster",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 690,
+              "y": 80
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Inside cluster"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "3a8a4b63-8b75-48d2-856b-a2db94e64d05",
+            "zIndex": 16,
+            "data": {
+              "type": "tm.Text",
+              "name": "Inside cluster",
+              "hasOpenThreats": false
+            }
           }
         ],
         "description": "Login process"
@@ -646,6 +735,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 3
+    "threatTop": 5
   }
 }
